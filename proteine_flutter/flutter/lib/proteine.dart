@@ -4,6 +4,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:proteine_flutter/config.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:proteine_flutter/screen/home/addMeal_form.dart';
+import 'package:proteine_flutter/screen/home/home_screen.dart';
 import 'package:proteine_flutter/widget/style/provider.dart';
 import 'package:proteine_flutter/widget/style/style.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
@@ -33,52 +35,22 @@ VoidCallback onInvitePlayerSuccess = () {
   print("Player invite email sent");
 };
 
-const AUTH_ROUTES = {
-  "/login",
-  "/signUpContinue",
-  "/signUp",
-  "/dashboard/welcome",
-  "/forgotPassword",
-  "/resetPassword"
-};
+
 //Help me with routing please
 final router = GoRouter(
     restorationScopeId: "router_restore_scope",
     navigatorKey: _rootNavigationKey,
-    initialLocation: "/welcome",
-    /* redirect: (_, state) {
-      print(state.fullPath);
-
-      final isAuthenticated = routerAccount.isLoggedIn.value;
-      final isAuthRoute = AUTH_ROUTES.contains(state.path);
-      if (!isAuthenticated && !isAuthRoute) {
-
-        print(state.fullPath);
-        return "/dashboard/welcome";
-      }
-
-      if (isAuthRoute) {
-       // final bottomNavigationBar = Visibility( visible: false);
-      }
-
+    initialLocation: "/home",
+     redirect: (_, state) {
       print(state.fullPath);
       return state.path; 
-    },*/
+    },
     routes: [
-/*       WelcomeRoute(),
       HomeRoute(),
-      LoginRoute(),
-      PlayerManagementRoute(),
-      NotificationsRoute(),
-      SignUpRoute(),
-      SignUpContinueRoute(),
-      ForgotPasswordRoute(),
-      ResetPasswordRoute(),
-      ManageClubRoute(),
-      InvitePlayerRoute() */
+      QuickAddMealRoute(),
     ]);
 
-class YuSportsState extends State<YuSports> {
+class ProteineState extends State<Proteine> {
   MaterialApp? _cache;
   AppStyle? _currentStyle;
 
@@ -104,7 +76,7 @@ class YuSportsState extends State<YuSports> {
     _cache ??= MaterialApp.router(
       key: const ValueKey("app_root"),
       debugShowCheckedModeBanner: false,
-      title: 'YuSports',
+      title: 'Proteine',
       restorationScopeId: "root_restore_scope",
       theme: variant.light.theme,
       darkTheme: variant.dark.theme,
@@ -129,11 +101,11 @@ class YuSportsState extends State<YuSports> {
   }
 }
 
-class YuSports extends StatefulWidget {
-  const YuSports() : super(key: const ValueKey("yusports_root"));
+class Proteine extends StatefulWidget {
+  const Proteine() : super(key: const ValueKey("Proteine_root"));
 
   @override
-  State<StatefulWidget> createState() => YuSportsState();
+  State<StatefulWidget> createState() => ProteineState();
 
   static start(
       {AppConfig? config, required FirebaseOptions firebaseOptions}) async {
@@ -156,18 +128,8 @@ class YuSports extends StatefulWidget {
     // This removes the "#" from the URL in web.
     usePathUrlStrategy();
 
-/*     final account = AccountRepository();
-    print("Restoring Session");
-    // await account.logout();
-    await account.restoreSession().catchError((e) {
-      print("Error restoring session: $e");
-      if (e is FirebaseAuthException && e.code == "user-token-expired") {
-        return account.logout().then((value) => null);
-      } else {
-        return null;
-      }
-    }); */
 
-    runApp(const YuSports());
+
+    runApp(const Proteine());
   }
 }

@@ -14,7 +14,7 @@ class AppConfig {
 
   bool get sendAnalytics => false;
 
-  String get baseUrl => "https://api-ipowzzbk4q-uc.a.run.app";
+  String get baseUrl => "";
 
 }
 

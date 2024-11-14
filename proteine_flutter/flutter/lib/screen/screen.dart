@@ -42,5 +42,4 @@ abstract class ScreenState<V extends ViewModel, W extends StatefulWidget> extend
     viewModel.dispose();
     super.dispose();
   }
-
 }
