@@ -7,7 +7,7 @@ import 'package:proteine_flutter/widget/style/style.dart';
 class ExampleRoute extends GoRoute {
   ExampleRoute(String name, String path)
       : super(
-          path: path,
+          path: '/quickAddMeal',
           pageBuilder: (context, state) => NoTransitionPage<void>(
               key: state.pageKey,
               child: PlaceholderScreen(
